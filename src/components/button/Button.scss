@@ -1,0 +1,26 @@
+@import '../../index.scss';
+
+button {
+  height: $default-button-height;
+  width: $default-button-width;
+  background-color: $primary-color;
+  border-radius: $default-border-radius;
+  border: none;
+  font-family: $default-font-family;
+  font-weight: $default-font-weight;
+  font-size: $default-font-size;
+  color: $font-color;
+  display: grid;
+  place-content: center;
+  padding: $default-button-padding;
+
+  &.disabled, &.loading {
+    filter: opacity($disabled-opacity);
+    &:hover {cursor: not-allowed;}
+    &:active {background-color: $primary-color;}
+  }
+
+  &:hover {cursor: pointer;}
+  &:active {background-color: $active-color;}
+  &:focus {outline: none;}
+}
