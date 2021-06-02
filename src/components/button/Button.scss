@@ -21,6 +21,6 @@ button {
   }
 
   &:hover {cursor: pointer;}
-  &:active {background-color: $active-color;}
+  &:active {filter: opacity(0.6)}
   &:focus {outline: none;}
 }

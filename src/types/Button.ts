@@ -1,6 +1,6 @@
 import {ReactChild} from "react";
 
-export interface IButtonProps {
+export interface ButtonProps {
     disabled?: boolean;
     disabledClassName?: string;
     loading?: boolean;
@@ -14,4 +14,5 @@ export interface IButtonProps {
     width?: string;
     height?: string;
     label?: string;
+    onClick: () => any;
 }

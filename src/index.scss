@@ -5,14 +5,19 @@ $default-font-size: 16px;
 
 // COLORS
 $primary-color: #ffd500;
-$active-color: #d4b101;
+$error-color: #f13e3e;
 $font-color: #353535;
 
 // COMMONS
 $disabled-opacity: 0.6;
-$default-border-radius: 10px;
+$default-border-radius: 5px;
 
 // BUTTON
 $default-button-height: 40px;
-$default-button-width: 100px;
+$default-button-width: 100%;
 $default-button-padding: 10px;
+
+// INPUT
+$default-input-height: 40px;
+$default-input-width: 100%;
+$default-input-padding: 0 0 0 10px;

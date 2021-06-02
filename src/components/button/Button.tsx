@@ -1,9 +1,9 @@
 import React, {FC} from 'react';
 import './Button.scss';
-import {IButtonProps} from '../../types/Button';
+import {ButtonProps} from '../../types/Button';
 import Loader from '../../assets/loading.svg';
 
-export const Button: FC<IButtonProps> = ({
+export const Button: FC<ButtonProps> = ({
                                             disabled,
                                             disabledClassName,
                                             loading,
@@ -17,6 +17,7 @@ export const Button: FC<IButtonProps> = ({
                                             width,
                                             height,
                                             label,
+                                            onClick,
                                             ...props}) => {
 
     return (
@@ -28,6 +29,7 @@ export const Button: FC<IButtonProps> = ({
                 ${disabled ? (disabledClassName || 'disabled') : ''}
                 ${loading ? (loadingClassName || 'loading') : ''}
             `}
+            onClick={onClick}
             {...props}
         >
             {
