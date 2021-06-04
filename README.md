@@ -15,4 +15,4 @@
   
 Library in progress!
 
-You can find the components that Bisk currently supports [here](https://nestiii.github.io/bisk)
+You can find the components that Bisk currently supports [here](https://nestiii.github.io/bisk).
