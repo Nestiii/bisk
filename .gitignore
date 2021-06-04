@@ -4,5 +4,6 @@ node_modules
 .cache
 .idea
 dist
+docs-build
 example
 test
