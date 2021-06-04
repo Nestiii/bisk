@@ -8,6 +8,7 @@ export const Input: FC<InputProps> = ({
                    onChange,
                    type = 'text',
                    dateSeparator = '/',
+                   dateFormat = 'yearLast',
                    name,
                    labelClassName,
                    showError = 'always',
@@ -19,13 +20,13 @@ export const Input: FC<InputProps> = ({
                    floatingLabel,
                    ...props}) => {
 
-    const [focus, setFocus] = useState(false)
+    const [focus, setFocus] = useState(false);
 
     const numbersOnly = (value: string) => {
         return value.replaceAll(/[^0-9]+/g, '');
     }
 
-    const dateFormat = (value: string) => {
+    const yearLast = (value: string) => {
         const temp = numbersOnly(value)
         switch (temp.length) {
             case 0:
@@ -52,10 +53,42 @@ export const Input: FC<InputProps> = ({
         }
     }
 
+    const yearFirst = (value: string) => {
+        const temp = numbersOnly(value)
+        switch (temp.length) {
+            case 0:
+            case 1:
+            case 2:
+            case 3:
+                return temp;
+            case 4:
+                return temp + dateSeparator;
+            case 5:
+            case 6:
+                return temp.substring(0, 4) +
+                    dateSeparator +
+                    temp.substring(4, 6);
+            case 7:
+            case 8:
+                return temp.substring(0, 4) +
+                    dateSeparator +
+                    temp.substring(4, 6) +
+                    dateSeparator +
+                    temp.substring(6, 8);
+            default:
+                return value.substring(0, 10);
+        }
+    }
+
+    const parseDate = (value: string) => {
+        if(dateFormat === 'yearFirst') return yearFirst(value)
+        return yearLast(value)
+    }
+
     const showErrorMessage = () => {
         switch (showError) {
             case 'always': return true;
-            case 'onFocus': return focus;
+            case 'onFocus': return focus || !!value;
             case 'onValue': return !!value;
         }
     }
@@ -63,7 +96,7 @@ export const Input: FC<InputProps> = ({
     const handleChange = (val: string) => {
         switch (type) {
             case 'date':
-                (val.length < value.length) ? onChange(val) : onChange(dateFormat(val));
+                (val.length < value.length) ? onChange(val) : onChange(parseDate(val));
                 break;
             case 'numeric':
                 onChange(numbersOnly(val));
@@ -76,26 +109,26 @@ export const Input: FC<InputProps> = ({
     }
 
     return (
-        <div className={'input-container'}>
+        <div className={'bisk-input-container'}>
             {
                 !!label &&
                 <div className={`
-                        label
+                        bisk-label
                         ${labelClassName}
-                        ${floatingLabel ? ((focus || value) ? 'top-label' : 'center-label') : ''}
-                        ${iconPosition === 'left' ? 'icon-left-label' : ''}
+                        ${floatingLabel ? ((focus || value) ? 'bisk-top-label' : 'bisk-center-label') : ''}
+                        ${iconPosition === 'left' ? 'bisk-icon-left-label' : ''}
                      `}
                 >
                     {label}
                 </div>
             }
-            {iconPosition === 'left' && <div onClick={onClickIcon} className={'icon-container left'}>{icon}</div>}
+            {iconPosition === 'left' && <div onClick={onClickIcon} className={'bisk-icon-container bisk-left'}>{icon}</div>}
             <input
                 className={`
-                    input
-                    ${error && showErrorMessage() ? ' input-error' : ''}
-                    ${icon && iconPosition === 'left' ? 'icon-left' : ''}
-                    ${icon && iconPosition === 'right' ? 'icon-right' : ''}
+                    bisk-input
+                    ${error && showErrorMessage() ? ' bisk-input-error' : ''}
+                    ${icon && iconPosition === 'left' ? 'bisk-icon-left' : ''}
+                    ${icon && iconPosition === 'right' ? 'bisk-icon-right' : ''}
                 `}
                 onChange={ (e) => handleChange(e.target.value)}
                 value={value}
@@ -106,10 +139,10 @@ export const Input: FC<InputProps> = ({
                 onBlur={() => setFocus(false)}
                 {...props}
             />
-            {iconPosition === 'right' && <div onClick={onClickIcon} className={'icon-container right'}>{icon}</div>}
+            {iconPosition === 'right' && <div onClick={onClickIcon} className={'bisk-icon-container bisk-right'}>{icon}</div>}
             {
                 error && showErrorMessage() &&
-                <div className='error-label'>
+                <div className='bisk-error-label'>
                     {error}
                 </div>
             }

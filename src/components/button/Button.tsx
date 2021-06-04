@@ -25,9 +25,10 @@ export const Button: FC<ButtonProps> = ({
             disabled={disabled || loading}
             style={{backgroundColor, color, border, borderRadius, width, height}}
             className={`
+                bisk-button
                 ${className}
-                ${disabled ? (disabledClassName || 'disabled') : ''}
-                ${loading ? (loadingClassName || 'loading') : ''}
+                ${disabled ? (disabledClassName || 'bisk-disabled') : ''}
+                ${loading ? (loadingClassName || 'bisk-loading') : ''}
             `}
             onClick={onClick}
             {...props}

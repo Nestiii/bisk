@@ -15,4 +15,16 @@ export interface ButtonProps {
     height?: string;
     label?: string;
     onClick: () => any;
+
+    // ButtonHTMLAttributes
+    autoFocus?: boolean;
+    form?: string;
+    formAction?: string;
+    formEncType?: string;
+    formMethod?: string;
+    formNoValidate?: boolean;
+    formTarget?: string;
+    name?: string;
+    type?: 'submit' | 'reset' | 'button';
+    value?: string | ReadonlyArray<string> | number;
 }
