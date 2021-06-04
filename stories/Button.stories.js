@@ -10,7 +10,7 @@ export default {
 
 const Template = (args) => (
     <div style={{width: 200}}>
-        <Button {...args} label={'Label'} />
+        <Button {...args} label={'Bisk'} />
     </div>
 );
 

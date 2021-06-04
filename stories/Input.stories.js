@@ -34,9 +34,6 @@ const Template = (args) => (
 );
 
 export const Base = Template.bind({});
-Base.args = {
-    label: 'Label'
-}
 
 export const Numeric = Template.bind({});
 Numeric.args = {
