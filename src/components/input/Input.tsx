@@ -109,7 +109,7 @@ export const Input: FC<InputProps> = ({
     }
 
     return (
-        <div className={'bisk-input-container'}>
+        <div className={'bisk-input-container'} style={{marginTop: floatingLabel ? 15 : 0}}>
             {
                 !!label &&
                 <div className={`
@@ -122,7 +122,7 @@ export const Input: FC<InputProps> = ({
                     {label}
                 </div>
             }
-            {iconPosition === 'left' && <div onClick={onClickIcon} className={'bisk-icon-container bisk-left'}>{icon}</div>}
+            {iconPosition === 'left' && icon && <div onClick={onClickIcon} className={'bisk-icon-container bisk-left'}>{icon}</div>}
             <input
                 className={`
                     bisk-input
@@ -139,7 +139,7 @@ export const Input: FC<InputProps> = ({
                 onBlur={() => setFocus(false)}
                 {...props}
             />
-            {iconPosition === 'right' && <div onClick={onClickIcon} className={'bisk-icon-container bisk-right'}>{icon}</div>}
+            {iconPosition === 'right' && icon && <div onClick={onClickIcon} className={'bisk-icon-container bisk-right'}>{icon}</div>}
             {
                 error && showErrorMessage() &&
                 <div className='bisk-error-label'>
