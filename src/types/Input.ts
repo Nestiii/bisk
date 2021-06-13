@@ -1,4 +1,4 @@
-import {ReactChild} from "react";
+import {FocusEventHandler, ReactChild} from "react";
 
 export interface InputProps {
     value: string;
@@ -47,4 +47,6 @@ export interface InputProps {
     src?: string;
     step?: number | string;
     width?: number | string;
+    onFocus?: FocusEventHandler;
+    onBlur?: FocusEventHandler;
 }

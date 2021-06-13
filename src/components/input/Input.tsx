@@ -18,6 +18,8 @@ export const Input: FC<InputProps> = ({
                    onClickIcon,
                    placeholder,
                    floatingLabel,
+                   onBlur,
+                   onFocus,
                    ...props}) => {
 
     const [focus, setFocus] = useState(false);
@@ -135,8 +137,14 @@ export const Input: FC<InputProps> = ({
                 type={type !== 'date' ? type : 'text'}
                 name={name}
                 placeholder={placeholder}
-                onFocus={() => setFocus(true)}
-                onBlur={() => setFocus(false)}
+                onFocus={(e) => {
+                    onFocus && onFocus(e)
+                    setFocus(true)
+                }}
+                onBlur={(e) => {
+                    onBlur && onBlur(e)
+                    setFocus(false)
+                }}
                 {...props}
             />
             {iconPosition === 'right' && icon && <div onClick={onClickIcon} className={'bisk-icon-container bisk-right'}>{icon}</div>}
